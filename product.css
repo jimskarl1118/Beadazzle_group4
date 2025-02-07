@@ -1,0 +1,1063 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Style+Script&display=swap');
+
+/* Homepage */
+.homepage {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full viewport width */
+  background: url(products_img_cropped/download.jpg) no-repeat center center; /* Center the image */
+  background-size: cover; /* Ensure the image scales proportionally to cover the container */
+  background-attachment: fixed; /* Optional for a parallax effect */
+}
+
+
+.homepage::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4); /* Slightly dark overlay for better contrast */
+  z-index: 1; /* Ensure it stays below the content */
+}
+
+.homepage .content {
+  position: relative;
+  display: flex; /* Flexbox for alignment */
+  height: 95%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center content horizontally */
+  z-index: 2; /* Place above the overlay */
+}
+
+.hero-tagline {
+  animation: fadeIn 2s ease-in-out;
+}
+
+
+
+.homepage .text {
+  color: black;
+  text-align: center;
+
+}
+
+.homepage__logo-img {
+  width: 70px;
+}
+
+.homepage__logo {
+  display: flex;
+  align-items: center; /* Align logo and text in the same row */
+  gap: 10px; /* Space between logo image and text */
+  text-decoration: none;
+  margin-top: 7rem;
+}   
+
+
+
+.homepage .text h1 {
+  font-family: 'Style Script', cursive; /* Custom font for the header */
+  font-size: 4rem; /* Large and elegant font size */
+  display: inline-block; /* Ensures the logo text behaves as a block element */
+  color: whitesmoke; /* Smooth contrast color for light backgrounds */
+  text-shadow: 
+      2px 2px 3px rgba(0, 0, 0, 0.5),   /* Bottom-right shadow */
+      -2px -2px 3px rgba(0, 0, 0, 0.5), /* Top-left shadow */
+      2px -2px 3px rgba(0, 0, 0, 0.5),  /* Top-right shadow */
+      -2px 2px 3px rgba(0, 0, 0, 0.5);  /* Bottom-left shadow */
+  text-decoration: none; /* Removes underline */
+  white-space: nowrap; /* Prevents text wrapping for a single line logo */
+  line-height: 1.5;/* Ensures proper spacing between lines */
+  margin-top: 2rem; /* Adds space below the heading */
+
+}
+
+
+
+/* General Styling for Homepage */
+.text h1 {
+  margin: 0 0 20px;
+}
+/* Add these styles to your CSS file */
+
+.text {
+  position: relative;
+  overflow: hidden;  /* Prevents content from overflowing during animation */
+}
+
+.slide-right {
+  animation: slideInRight 2s ease-out forwards;  /* Slower animation */
+}
+
+.slide-left {
+  animation: slideInLeft 2s ease-out forwards;  /* Slower animation */
+}
+
+
+/* Keyframes for sliding the header from the right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);  /* Starts off-screen to the right */
+    opacity: 0;  /* Start with no visibility */
+  }
+  to {
+    transform: translateX(0);  /* Ends at its normal position */
+    opacity: 1;  /* Becomes fully visible */
+  }
+}
+
+/* Keyframes for sliding the paragraph from the left */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);  /* Starts off-screen to the left */
+    opacity: 0;  /* Start with no visibility */
+  }
+  to {
+    transform: translateX(0);  /* Ends at its normal position */
+    opacity: 1;  /* Becomes fully visible */
+  }
+}
+
+
+.homepage .text p {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  color: white;
+  font-size: 1.80rem;
+  margin: 6px;
+  line-height: 1.8; /* Improves readability */
+  margin-bottom: 2rem;
+  text-shadow: 
+  2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+  -2px -2px 3px rgba(0, 0, 0, 0.8), /* Top-left shadow */
+  2px -2px 3px rgba(0, 0, 0, 0.8),  /* Top-right shadow */
+  -2px 2px 3px rgba(0, 0, 0, 0.8);  /* Bottom-left shadow */
+text-decoration: none; /* Removes underline */
+
+}
+
+.button-link button {
+  background-color:#a50f23; /* Background color of the button */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  padding: .75rem 1.5rem; /* Padding for button size */
+  font-family: "Style Script";
+  font-size: 1.80rem; /* Font size for readability */
+  font-weight: 500;
+  text-shadow: 
+  2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+  -2px -2px 3px rgba(0, 0, 0, 0.8); /* Top-left shadow */
+
+  text-decoration: none; /* Removes underline */
+  margin-top: 2rem; /* Adds space below the heading */
+  border-radius: 30px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor for hover effect */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+}
+
+.button-link button:hover {
+  background-color: #FFFDD0; /* Darker shade on hover */
+  text-shadow: none;
+  font-weight: 600;
+  color:black;
+  transform: scale(1.20); /* Slight zoom effect */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+}
+
+body {
+  background-color: #ffffff; /* Ensure the white background for the main body */
+}
+
+/* Header Styles */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #a50f23;
+  padding: 3px 0; /* Add padding to the header */
+  z-index: 1000; /* Ensure the header stays on top */
+}
+
+/* Flexbox Utility */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space elements in the container evenly */
+}
+
+/* Container */
+.container {
+  max-width: 900px; /* Adjusted to a more common max-width */
+  width: 75%;
+  margin: 0 auto;
+  padding: 0 10px; /* Add padding for spacing */
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav__logo-img {
+  width: 100px;
+  margin-left: -12rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center; /* Align logo and text in the same row */
+  gap: 10px; /* Space between logo image and text */
+  text-decoration: none;
+}   
+
+.nav-logo .logo-text {
+  font-family: 'Style Script'; /* Custom font for the header */
+  font-size: 2.5rem; /* Large and elegant font size */
+  display: inline-block; /* Ensures the logo text behaves as a block element */
+  color: rgb(255, 255, 255); /* Smooth contrast color for light backgrounds */
+  text-shadow: 
+      2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+      -2px -2px 3px rgba(0, 0, 0, 0.8), /* Top-left shadow */
+      2px -2px 3px rgba(0, 0, 0, 0.8),  /* Top-right shadow */
+      -2px 2px 3px rgba(0, 0, 0, 0.8);  /* Bottom-left shadow */
+  text-decoration: none; /* Removes underline */
+  white-space: nowrap; /* Prevents text wrapping for a single line logo */
+  margin-left: 2.5rem;
+  margin: 0;
+  padding: 0;
+  line-height: 1; /* Ensures text is aligned with the logo */
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex; /* Ensure nav links are displayed in a row */
+  gap: 20px; /* Add spacing between nav items */
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  list-style: none;
+  align-items: center;
+  margin-right: -9rem;
+}
+
+.nav-links a {
+  padding: 8px 10px; /* Add padding around nav links */
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 20px; /* Ensure readability */
+  border-radius: 25px;
+  transition: all 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover Effect for Nav Links */
+.nav-links a:hover {
+  background-color: #FFFDD0; /* Light yellow on hover */
+  color: black; /* Change text color on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+}
+
+.cart-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 15px;
+  background-color: #f8c47100; /* Light orange background */
+  color: white; /* White icon color */
+  padding: 10px;
+  border-radius: 50%; /* Circle shape */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-toggle:hover {
+  background-color: #e7726e; /* Darker orange on hover */
+}
+
+.cart-toggle i {
+  font-size: 1.5rem; /* Adjust the size of the icon */
+}
+
+.fas.fa-shopping-cart {
+  font-size: 30px; /* Size of the cart icon */
+  color: #ffffff; /* Cart icon color */
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff0000; /* Red background for the cart count */
+  color: white; /* White color for the count */
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+  display: inline-block;
+}
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cart Container */
+.cart-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Table Header */
+.cart-table th {
+  background-color: #333;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+/* Table Styling */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cart-table td, .cart-table th {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-table img {
+  width: 50px;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Button Styles */
+.quantity-btn, .remove-btn {
+  background-color: #ff6f61;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quantity-btn:hover, .remove-btn:hover {
+  background-color: #d55a50;
+}
+
+.remove-btn {
+  background-color: #f44336;
+}
+
+.remove-btn:hover {
+  background-color: #e53935;
+}
+
+/* Cart Summary */
+.cart-summary {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-summary p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#checkout-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#checkout-btn:hover {
+  background-color: #45a049;
+}
+
+/* Shop More Button */
+.btn__cart {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.btn__cart:hover {
+  background-color: #0b7dda;
+}
+
+/* Cart Table - Empty State */
+.cart-container p {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),url("img/SHAI.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #f5f7fa;
+  text-align: center;
+  padding: 160px 0; /* Increased padding for more height */
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 700px; /* Limit width of content */
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: "Merriweather";
+  font-size: 1.5rem; /* Larger heading */
+  margin-bottom: 20px;
+  text-shadow: 
+        2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+        -2px -2px 3px rgba(0, 0, 0, 0.8), /* Top-left shadow */
+}
+
+.hero h2 {
+  font-family: "Style Script";
+  font-size: 5rem; /* Smaller subheading */
+  margin-bottom: 30px;
+  text-shadow: 
+        2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+        -2px -2px 3px rgba(0, 0, 0, 0.8), /* Top-left shadow */
+        2px -2px 3px rgba(0, 0, 0, 0.8),  /* Top-right shadow */
+        -2px 2px 3px rgba(0, 0, 0, 0.8);  /* Bottom-left shadow */
+}
+
+.hero p {
+  font-family: "Merriweather";
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  text-shadow: 
+        2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+        -2px -2px 3px rgba(0, 0, 0, 0.8), /* Top-left shadow */
+}
+
+.hero button {
+  background-color: #df5454;
+  color: #e7dede;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: #1f0000;
+  font-size: 1rem;
+  cursor: pointer;
+  transform: scale(1.20);
+  transition: background-color 0.3s;
+}
+
+.hero button:hover {
+  background-color: #700909;
+}
+
+/* Popular Collections */
+.popular-collections {
+  padding: 100px 0; /* Increased padding */
+  text-align: center;
+}
+
+.popular-collections h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.collection-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Increased gap */
+}
+
+.collection-item {
+  width: 350px; /* Fixed width for items */
+  text-align: center;
+}
+
+.collection-item img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.collection-item h3,h4,h5 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.collection-item button {
+  background-color: #b12a2a;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.collection-item button:hover {
+  background-color: #e97575;
+}
+
+/* Slick Slider Styles */
+.slick-slider .slick-prev,
+.slick-slider .slick-next {
+  z-index: 10; /* Ensure arrows are above the images */
+  font-size: 50px; /* Adjust arrow size */
+}
+
+.slick-slide {
+  margin: 0 10px; /* Adjust this value as needed */
+}
+
+.product-grid .slick-list {
+  padding: 10px 0 !important; /* Prevents elements from touching */
+}
+
+.slick-track {
+  display: flex !important;
+  gap: 10px; /* Adds proper spacing */
+}
+
+/* New Products */
+.new-products {
+  padding: 20px 0; /* Increased padding */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),url("products_img_cropped/download.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #000000;
+  text-align: center;
+  padding: 160px 0; /* Increased padding for more height */
+  z-index: 1;
+}
+
+.new-products h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #ecd6d6;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  border-radius: 10px;
+  gap: 20px; 
+}
+
+.product-grid .product-item {
+  width: 200px;
+  margin: 0;
+  padding: 10px;
+}
+
+.product-item {
+  width: 250px; /* Fixed width for items */
+  background-color: #eeebeb;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Hide overflowing content */
+  gap: 100px;
+  margin: 0 10px;
+}
+
+.product-item img {
+  width: 100%;
+  border-radius: 8px 8px 0 0; /* Round top corners */
+}
+
+.product-details {
+  padding: 20px;
+  text-align: center;
+}
+
+.product-details h3,h4 ,h5,h6 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.product-details .price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-details .rating {
+  color: #ffcc00; /* Gold color for stars */
+  margin-bottom: 20px;
+}
+
+.product-details button {
+  background-color: #f36262;
+  color: #0c0000;
+  padding: 12px 30px;
+  border: none;
+  border-spacing: 12px;
+  border-radius: 5px;
+  font-size: 15px;
+  size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.product-details button:hover {
+  background-color: #ecd6d6;
+}
+
+
+
+/* Footer */
+footer {
+  background-color: #b46161;
+  color: #500606;
+  padding: 30px 0; /* Increased padding */
+  text-align: center;
+}
+
+footer .container {
+  max-width: 960px; /* Adjusted container width */
+}
+
+footer p {
+  font-size: 1rem;
+}
+
+.chatbot-container {
+  line-height: 2;
+  padding: 15px;
+  font-size: 16px;
+  position: fixed;
+  bottom: 120px; /* Adjusted space above the button */
+  right: 20px;
+  width: 500px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+  animation: jump 0.25s ease-out; /* Animation for jumping effect */
+}
+
+
+.chatbot-header {
+  background-color: #52032c;
+  color: white;
+  padding: 5px;
+  font-family: "Style Script";
+  font-size: 25px;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.chatbot-messages {
+  font-family: "Merriweather", serif;
+  font-size: small;
+  flex: 1;
+  overflow-y: auto;
+  padding: 35px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
+
+.chatbot-input {
+  display: flex;
+  border-top: 2px solid #ddd;
+  padding: 10px;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 0 0 0 10px;
+  outline: none;
+}
+
+.chatbot-input button {
+  background-color: #b92236;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 0 0 10px 0;
+  cursor: pointer;
+}
+
+.chatbot-button {
+  position: fixed;
+  bottom: 1px;
+  right: 10px;
+  background-color: #a50f23;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 1000;
+  margin-bottom: 30px;
+  margin-right: 30px;
+  animation: jumpLoop 0.6s ease-in-out infinite;
+}
+
+
+
+.loading {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff69b4;
+  box-shadow: 20px 0 #ff69b4, -20px 0 #ff69b4;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 10px 10px; /* Space between icons */
+  font-size: 30px; /* Icon size */
+  cursor: pointer;
+  color: #ffffff; /* Icon color */
+  transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.about .social-links a:hover {
+  transform: scale(1.3); /* Zoom-in effect */
+  color: #da4167;
+}
+
+
+
+body {
+  /* Make the body a flex container */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  height: 100vh; /* Full height of the viewport */
+}
+/* Header Styles */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e7726e;
+  padding: 3px 0; /* Add padding to the header */
+  z-index: 1000; /* Ensure the header stays on top */
+}
+
+/* Flexbox Utility */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space elements in the container evenly */
+}
+
+/* Container */
+.container {
+  max-width: 900px; /* Adjusted to a more common max-width */
+  width: 75%;
+  margin: 0 auto;
+  padding: 0 10px; /* Add padding for spacing */
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo .logo-text {
+  font-family: 'Style Script', cursive; /* Custom font for the header */
+  font-size: 2.5rem; /* Large and elegant font size */
+  display: inline-block; /* Ensures the logo text behaves as a block element */
+  color: whitesmoke; /* Smooth contrast color for light backgrounds */
+  text-shadow: 
+      2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+      -2px -2px 3px rgba(0, 0, 0, 0.8), /* Top-left shadow */
+      2px -2px 3px rgba(0, 0, 0, 0.8),  /* Top-right shadow */
+      -2px 2px 3px rgba(0, 0, 0, 0.8);  /* Bottom-left shadow */
+  text-decoration: none; /* Removes underline */
+  white-space: nowrap; /* Prevents text wrapping for a single line logo */
+}
+
+ 
+
+
+.nav-links {
+  display: flex; /* Ensure nav links are displayed in a row */
+  gap: 20px; /* Add spacing between nav items */
+  font-family: 'Montserrat', sans-serif; /* Apply specific font for navigation */
+  font-weight: bold;
+  list-style: none;
+}
+
+.nav-links a {
+  padding: 8px 10px; /* Add padding around nav links */
+  color: white;
+  text-decoration: none;
+  font-size: 20px; /* Ensure readability */
+  border-radius: 25px;
+  transition: all 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover Effect for Nav Links */
+.nav-links a:hover {
+  background-color: #FFFDD0; /* Light yellow on hover */
+  color: black; /* Change text color on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Outfit';
+  background: linear-gradient(135deg, #ffe6f2, #ffccf9);
+}
+
+.contact-container{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
+.contact-left{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+.contact-left-title h2{
+  font-family: "Style Script", serif;
+  font-weight: 600;
+   font-size: 3rem;
+   margin-top: 30px; 
+   color: #250b27; /* Deep purple for contrast */
+   text-align: center;
+}
+
+.contact-left-title hr{
+  border: none;
+  width: 120px;
+  height: 5px;
+  background-color: #a363aa;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+
+.connect-paragraph {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem; /* Adjust text size */
+  color: #0f0101; /* Soft gray color for text */
+  text-align: left; /* Center align the text */
+  margin-top: 10px; /* Add some space above the paragraph */
+  margin-bottom: 20px; /* Add space below the paragraph */
+  letter-spacing: 0.5px; /* Slightly increase the spacing between letters */
+}
+
+
+.contact-inputs{
+  width: 400px;
+  height: 50px;
+  border: none;
+  outline: none;
+  padding-left: 25px;
+  font-weight: 500;
+  color: #666;
+  border-radius: 50px;
+}
+.contact-left textarea{
+  height: 140px;
+  padding-top: 15px;
+  border-radius: 20px;
+}
+.contact-inputs:focus{
+  border: 2px solid #ff994f;
+}
+.contact-inputs::placeholder{
+  color: #a9a9a9;
+}
+.contact-left button{
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #fff;
+  gap: 10px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(270deg, #ff994f,#fa6d86);
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.contact-left button img{
+  height: 15px;
+}
+.contact-right img{
+  padding: 50px;
+  width: 350px;
+  margin-top: 20px;
+}
+
+
+
+
+
+/* Basic styling for the checkout pop-up */
+.checkout-popup {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Background overlay */
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout-popup-content {
+  background-color: white;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.checkout-popup h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.checkout-popup form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.checkout-popup form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.checkout-popup form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.checkout-popup form button:hover {
+  background-color: #0056b3;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.cart-summary {
+  margin-top: 20px;
+}
+
+.cart-summary button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-summary button:hover {
+  background-color: #218838;
+}
+
+
+
+
+
+
+/* ... (Responsive styles and other CSS) ... */
+
+/* Responsive adjustments - Example */
+@media (max-width: 768px) {
+  .product-item {
+      width: 45%; /* Two items per row on medium screens */
+  }
+}
+
+@media (max-width: 500px) {
+.product-item {
+    width: 90%;  /* One item per row on small screens */
+}
+}

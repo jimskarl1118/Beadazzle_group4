@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Store</title>
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar container flex">
+            <a href="#" class="nav-logo">
+                <img src="products_img_cropped/logo.png" alt="" class="nav__logo-img"/>
+                <h2 class="logo-text">Beadazzle</h2>
+            </a>
+            <ul class="nav-links">
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="ourteams.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="cart-toggle">
+            <a href="cart.html" class="fas fa-shopping-cart">
+                <span id="cart-count" class="cart-count">0</span> <!-- This will show the cart number -->
+            </a>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>About Us</h2>
+            <p class="text">
+                Beadazzle invites you to explore the beauty of self-expression through beading. Each bead tells a story, capturing your emotions,
+                dreams, and memories in a tangible form. Whether you're celebrating a milestone or finding a unique gift, our creations allow you to 
+                carry your journey with you. Join us in inspiring the world, one bead at a time, and let your charm reflect who you are. 
+                
+                Thank you for being part of our creative journey!
+            </p>
+    
+            <!-- Social Media Buttons -->
+            <div class="social-links">
+                <a href="https://web.facebook.com/profile.php?id=61572501689171&notif_id=1737727207158588&notif_t=profile_plus_admin_invite&ref=notif"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@beadazzle_4"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Start of Our Team Section -->
+<!-- Chatbot Button -->
+<button class="chatbot-button" onclick="toggleChatbot()">
+    <i class="fas fa-comment"></i>
+</button>
+
+<!-- Chatbot Container -->
+<div id="chatbot" class="chatbot-container">
+    <div class="chatbot-header">
+        ✨Zelly✨
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+        <p>Hi sweetie, how are you today?</p>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!--=============== MAIN JS ===============-->
+<script src="main.js"></script>
+
+        <!-- Homepage End -->
+        <script>
+            // Function to add products to the cart
+    function addToCart(productId, productName, productPrice, productImage) {
+        // Create a product object
+        const product = {
+            id: productId,
+            name: productName,
+            price: productPrice,
+            quantity: 1,
+            image: productImage
+        };
+    
+        // Retrieve the cart from localStorage, or initialize an empty array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        // Check if the product already exists in the cart
+        const existingProduct = cart.find(item => item.id === productId);
+    
+        if (existingProduct) {
+            // If it exists, increase the quantity
+            existingProduct.quantity += 1;
+        } else {
+            // Otherwise, add the product to the cart
+            cart.push(product);
+        }
+    
+        // Save the updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+    
+        // Update the cart icon count
+        updateCartIcon();
+    
+        // Alert the user
+        alert(`${productName} added to cart!`);
+    }
+    
+    // Update the cart icon count
+    function updateCartIcon() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = document.getElementById('cart-count');
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = totalItems;
+    }
+    
+    // Attach click event listeners to all "Add to Cart" buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.closest('.product-item').getAttribute('data-id'));
+            const productName = this.closest('.product-item').getAttribute('data-name');
+            const productPrice = parseFloat(this.closest('.product-item').getAttribute('data-price'));
+            const productImage = this.closest('.product-item').querySelector('img').getAttribute('src');
+            addToCart(productId, productName, productPrice, productImage);
+        });
+    });
+    
+    // Update cart icon on page load
+    document.addEventListener('DOMContentLoaded', updateCartIcon);
+    
+    
+          </script> 
+
+          <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Beadazzle. All rights reserved.</p>
+        </div>
+    </footer>
+    </body>
+</html>

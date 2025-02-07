@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Store</title>
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    <style>
+        /* Styles for the page (cart styles removed) */
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar container flex">
+            <a href="#" class="nav-logo">
+                <img src="products_img_cropped/logo.png" alt="" class="nav__logo-img"/>
+                <h2 class="logo-text">Beadazzle</h2>
+            </a>
+            <ul class="nav-links">
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="ourteams.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="cart-toggle">
+            <a href="cart.html" class="fas fa-shopping-cart">
+                <span id="cart-count" class="cart-count">0</span> <!-- This will show the cart number -->
+            </a>
+        </div>
+    </header>
+
+
+    <section class="new-products" id="products">
+        <div class="container">
+            <h2>HAIRCLIPS</h2>
+            <div class="product-grid slider">
+                <!-- Product Items -->
+                <div class="product-item" data-id="10" data-name="Pink Glow" data-price="55.00">
+                    <img src="img/H1.jpg" alt="Pink Glow">
+                    <div class="product-details">
+                        <h3>Pink Glow</h3>
+                        <p class="price">₱55.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-item" data-id="11" data-name="Frost Bloom" data-price="55.00">
+                    <img src="img/H2.jpg" alt="Frost Bloom">
+                    <div class="product-details">
+                        <h3>Frost Bloom</h3>
+                        <p class="price">₱55.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-item" data-id="12" data-name="Crystal Bloom" data-price="55.00">
+                    <img src="img/H3.jpg" alt="Crystal Bloom">
+                    <div class="product-details">
+                        <h3>Crystal Bloom</h3>
+                        <p class="price">₱55.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Function to add products to the cart
+function addToCart(productId, productName, productPrice, productImage) {
+    // Create a product object
+    const product = {
+        id: productId,
+        name: productName,
+        price: productPrice,
+        quantity: 1,
+        image: productImage
+    };
+
+    // Retrieve the cart from localStorage, or initialize an empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if the product already exists in the cart
+    const existingProduct = cart.find(item => item.id === productId);
+
+    if (existingProduct) {
+        // If it exists, increase the quantity
+        existingProduct.quantity += 1;
+    } else {
+        // Otherwise, add the product to the cart
+        cart.push(product);
+    }
+
+    // Save the updated cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Update the cart icon count
+    updateCartIcon();
+
+    // Alert the user
+    alert(`${productName} added to cart!`);
+}
+
+// Update the cart icon count
+function updateCartIcon() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = document.getElementById('cart-count');
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    cartCount.textContent = totalItems;
+}
+
+// Attach click event listeners to all "Add to Cart" buttons
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = parseInt(this.closest('.product-item').getAttribute('data-id'));
+        const productName = this.closest('.product-item').getAttribute('data-name');
+        const productPrice = parseFloat(this.closest('.product-item').getAttribute('data-price'));
+        const productImage = this.closest('.product-item').querySelector('img').getAttribute('src');
+        addToCart(productId, productName, productPrice, productImage);
+    });
+});
+
+// Update cart icon on page load
+document.addEventListener('DOMContentLoaded', updateCartIcon);
+      </script>
+
+       <!-- Chatbot Button -->
+<button class="chatbot-button" onclick="toggleChatbot()">
+    <i class="fas fa-comment"></i>
+</button>
+
+<!-- Chatbot Container -->
+<div id="chatbot" class="chatbot-container">
+    <div class="chatbot-header">
+        ✨Zelly✨
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+        <p>Hi sweetie, how are you today?</p>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!--=============== MAIN JS ===============-->
+<script src="main.js"></script>
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+    <!-- JavaScript Code -->
+    <script>
+        // Event listener for "Buy Now" buttons
+        document.querySelectorAll(".buy-now").forEach(button => {
+            button.addEventListener("click", function () {
+                let product = this.closest(".product-item");
+                let productName = product.querySelector("h3").innerText;
+
+                // Redirect to QR code payment page
+                window.location.href = "your_qr_code_page.html?item=" + encodeURIComponent(productName);
+            });
+        });
+
+        // Initialize Slick Slider
+        $(document).ready(function(){
+            $('.slider').slick({
+                infinite: true,
+                speed: 500,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
+                arrows: true,
+                dots: true,
+                responsive: [
+                    { breakpoint: 1024, settings: { slidesToShow: 3 }},
+                    { breakpoint: 768, settings: { slidesToShow: 2 }},
+                    { breakpoint: 500, settings: { slidesToShow: 1 }}
+                ]
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Beadazzle. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

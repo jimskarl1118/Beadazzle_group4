@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Store</title>
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    
+    <!-- Updated EmailJS SDK -->
+    <script type="text/javascript" 
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("e9j64kaEBm7x4ehPn"); // Replace with your actual public key
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar container flex">
+            <a href="#" class="nav-logo">
+                <img src="products_img_cropped/logo.png" alt="" class="nav__logo-img"/>
+                <h2 class="logo-text">Beadazzle</h2>
+            </a>
+            <ul class="nav-links">
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="ourteams.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="cart-container">
+        <h1>Shopping Cart</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items"></tbody>
+        </table>
+        <div class="cart-summary">
+            <p>Total: <span id="cart-total">₱0.00</span></p>
+            <button id="checkout-btn">Checkout</button>
+        </div>
+        <br>
+        <a href="product.html" class="btn__cart">Shop more</a>
+    </section>
+
+    <!-- Checkout Pop-Up Form -->
+    <div id="checkout-popup" class="checkout-popup">
+        <div class="checkout-popup-content">
+            <span id="close-btn" class="close-btn">&times;</span>
+            <h2>Checkout Form</h2>
+            <form id="checkout-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                <label for="contact">Contact No.:</label>
+                <input type="text" id="contact" name="contact" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <p>Note: Only "Cash on Delivery" is available.</p>
+                <button type="submit">Submit Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chatbot Button -->
+    <button class="chatbot-button" onclick="toggleChatbot()">
+        <i class="fas fa-comment"></i>
+    </button>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot" class="chatbot-container">
+        <div class="chatbot-header">
+            ✨Zelly✨
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <p>Hi sweetie, how are you today?</p>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!--=============== MAIN JS ===============-->
+    <script>
+        // Initialize EmailJS with your public key
+        emailjs.init("e9j64kaEBm7x4ehPn");
+
+        // Function to render the cart
+        function renderCart() {
+            const cartContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cartContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+                cartTotal.textContent = '₱0.00';
+                return;
+            }
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = (item.price * item.quantity).toFixed(2);
+                total += parseFloat(itemTotal);
+
+                cartContainer.innerHTML += `
+                    <tr class="cart-item">
+                        <td><img src="${item.image}" alt="${item.name}"></td>
+                        <td>${item.name}</td>
+                        <td>₱${item.price.toFixed(2)}</td>
+                        <td>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </td>
+                        <td>₱${itemTotal}</td>
+                        <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+                    </tr>
+                `;
+            });
+
+            cartTotal.textContent = `₱${total.toFixed(2)}`;
+        }
+
+        // Function to update the quantity of a cart item
+        function updateQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart[index]) {
+                cart[index].quantity += change;
+
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1); // Remove item if quantity is zero or less
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+            }
+        }
+
+        // Function to remove an item from the cart
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        // Show pop-up when checkout button is clicked
+const checkoutBtn = document.getElementById('checkout-btn');
+const popup = document.getElementById('checkout-popup');
+const closeBtn = document.getElementById('close-btn');
+const checkoutForm = document.getElementById('checkout-form');
+
+checkoutBtn.addEventListener('click', () => {
+    // Ensure cart is not empty
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add items to your cart first.");
+        return;
+    }
+    popup.style.display = 'flex'; // Show the checkout pop-up
+});
+
+closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none'; // Close the pop-up
+});
+
+// Close the pop-up if clicked outside the content
+window.addEventListener('click', (event) => {
+    if (event.target === popup) {
+        popup.style.display = 'none';
+    }
+});
+
+// Handle form submission and send email via EmailJS
+checkoutForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log("Form submitted!");
+
+    // Get user input values
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const contact = document.getElementById('contact').value;
+    const email = document.getElementById('email').value;
+
+    // Get cart items from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add items to your cart first.");
+        return;
+    }
+    let cartDetails = cart.map(item => `${item.name} (x${item.quantity}) - ₱${(item.price * item.quantity).toFixed(2)}`).join('\n');
+
+    // Prepare email data
+    const emailData = {
+        name: name,
+        address: address,
+        contact: contact,
+        email: email,
+        cartDetails: cartDetails,
+        total: document.getElementById('cart-total').textContent,
+    };
+
+    // Send email via EmailJS
+    emailjs.send('service_rj8i84o', 'template_zfmo35i', emailData)
+        .then(response => {
+            console.log('Order sent successfully!', response);
+            // Clear cart after successful checkout
+            localStorage.removeItem('cart');
+            renderCart();
+            popup.style.display = 'none'; // Close the pop-up
+            alert('Thank you for your order! A confirmation email has been sent.');
+        })
+        .catch(error => {
+            console.error('Error sending order:', error);
+            alert('There was an issue with your order. Please try again.');
+        });
+});
+
+// Initial render of cart to ensure correct display
+renderCart();
+
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Beadazzle. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

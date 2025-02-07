@@ -1,0 +1,196 @@
+
+/* About Section */
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Style+Script&display=swap');
+/* Reset and basic styles */
+/* Reset and basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Make the body a flex container */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    height: 100vh; /* Full height of the viewport */
+}
+/* Header Styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #e7726e;
+    padding: 3px 0; /* Add padding to the header */
+    z-index: 1000; /* Ensure the header stays on top */
+}
+
+/* Flexbox Utility */
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space elements in the container evenly */
+}
+
+/* Container */
+.container {
+    max-width: 900px; /* Adjusted to a more common max-width */
+    width: 75%;
+    margin: 0 auto;
+    padding: 0 10px; /* Add padding for spacing */
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo .logo-text {
+    font-family: 'Style Script', cursive; /* Custom font for the header */
+    font-size: 2.5rem; /* Large and elegant font size */
+    display: inline-block; /* Ensures the logo text behaves as a block element */
+    color: whitesmoke; /* Smooth contrast color for light backgrounds */
+    text-shadow: 
+        2px 2px 3px rgba(0, 0, 0, 0.8),   /* Bottom-right shadow */
+        -2px -2px 3px rgba(0, 0, 0, 0.8), /* Top-left shadow */
+        2px -2px 3px rgba(0, 0, 0, 0.8),  /* Top-right shadow */
+        -2px 2px 3px rgba(0, 0, 0, 0.8);  /* Bottom-left shadow */
+    text-decoration: none; /* Removes underline */
+    white-space: nowrap; /* Prevents text wrapping for a single line logo */
+}
+
+   
+
+
+.nav-links {
+    display: flex; /* Ensure nav links are displayed in a row */
+    gap: 20px; /* Add spacing between nav items */
+    font-family: 'Montserrat', sans-serif; /* Apply specific font for navigation */
+    font-weight: bold;
+    list-style: none;
+}
+
+.nav-links a {
+    padding: 8px 10px; /* Add padding around nav links */
+    color: white;
+    text-decoration: none;
+    font-size: 20px; /* Ensure readability */
+    border-radius: 25px;
+    transition: all 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover Effect for Nav Links */
+.nav-links a:hover {
+    background-color: #FFFDD0; /* Light yellow on hover */
+    color: black; /* Change text color on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Outfit';
+    background: linear-gradient(135deg, #ffe6f2, #ffccf9);
+}
+
+.contact-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+.contact-left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.contact-left-title h2{
+    font-family: "Style Script", serif;
+    font-weight: 600;
+     font-size: 3rem;
+     margin-top: 30px; 
+     color: #250b27; /* Deep purple for contrast */
+     text-align: center;
+}
+
+.contact-left-title hr{
+    border: none;
+    width: 120px;
+    height: 5px;
+    background-color: #a363aa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+.connect-paragraph {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem; /* Adjust text size */
+    color: #0f0101; /* Soft gray color for text */
+    text-align: left; /* Center align the text */
+    margin-top: 10px; /* Add some space above the paragraph */
+    margin-bottom: 20px; /* Add space below the paragraph */
+    letter-spacing: 0.5px; /* Slightly increase the spacing between letters */
+  }
+
+
+.contact-inputs{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding-left: 25px;
+    font-weight: 500;
+    color: #666;
+    border-radius: 50px;
+}
+.contact-left textarea{
+    height: 140px;
+    padding-top: 15px;
+    border-radius: 20px;
+}
+.contact-inputs:focus{
+    border: 2px solid #ff994f;
+}
+.contact-inputs::placeholder{
+    color: #a9a9a9;
+}
+.contact-left button{
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #fff;
+    gap: 10px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(270deg, #ff994f,#fa6d86);
+    cursor: pointer;
+}
+.contact-left button img{
+    height: 15px;
+}
+.contact-right img{
+    padding: 50px;
+    width: 350px;
+}
+
+        
+
+@media (max-width:800px) {
+    .contact-inputs{
+        width: 80vw;
+    }
+    .contact-right{
+        display: none;
+    }
+}
+
